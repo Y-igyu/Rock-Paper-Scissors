@@ -1,4 +1,76 @@
+* {
+    margin: 0;
+    padding: 0;
+    color: rgb(185, 185, 185);
+}
+
+body {
+    text-align: center;
+}
+
+#game-header {
+    background-color: rgb(15, 16, 95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    font-size: 55px;
+}
+
 img {
     width: 150px;
-};
+    border-radius: 10px;
+}
 
+.pick {
+    width: 250px;
+}
+
+button {
+    border: none;
+    border-radius: 10px;
+    margin: 30px;
+}
+
+.choice-made {
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    margin:  20px auto 100px auto;
+    flex-wrap: wrap;
+    max-width: 700px;
+    min-width: 200px;
+    flex: 1;
+}
+
+html {
+    background-color: rgb(8, 9, 44);
+}
+
+p {
+    font-size: 30px;
+}
+
+#player, #comp {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#player p, #comp {
+    text-align: left;
+}
+
+.win-lose {
+    border: solid;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.win-lose p {
+    display: block;
+    text-align: center;
+    margin: auto;
+    height: 100px;
+}

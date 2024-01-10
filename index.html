@@ -8,10 +8,29 @@
 </head>
 <body>
     <h1 id="game-header">Rock Paper Scissors</h1>
+
+    <div class="win-lose">
+        <p>You win this round.</p>
+    </div>
+    <div class="choice-made">
+        <div id="player">
+            <p class="score">Player Score: <span class="player-wins"></span></p>
+            <img class="pick" src="./img/playerBlank.jpg">
+        </div>
+        <div id="comp">
+            <p class="score">Computer Score: <span class="comp-wins"></span></p>
+            <img class="pick" src="./img/compBlank.jpg">
+        </div>
+    </div>
     <div class="playerChoice">
-        <button class="rock"><img src="./img/rock.jpg"></button>
-        <button class="paper"><img src="./img/paper.jpg"></button>
-        <button class="scissors"><img src="./img/scissors.jpg"></button>
+        <div>
+            <p>PICK YOUR HAND!!!</p>
+        </div>
+        <div class="choice">
+            <button class="rock"><img src="./img/rock.jpg"></button>
+            <button class="paper"><img src="./img/paper.jpg"></button>
+            <button class="scissors"><img src="./img/scissors.jpg"></button>
+        </div>
     </div>
     
     <!-- <script src="script.js"></script> -->
