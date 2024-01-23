@@ -26,6 +26,7 @@ function getComputerChoice() {
 pickBtns.forEach(button => button.addEventListener("click", () => {
     player = button.textContent;
     let comp = getComputerChoice();
+    changeImages(player, comp);
     let tieWinLose = playRound(player, comp);
     if (tieWinLose === "It's a Tie!") {
         winText.textContent = "You both are idiots. -_-";
@@ -73,13 +74,29 @@ function game() {
         
     };
 
-    
-
     if (playerScore < compScore) {
         return console.log("Computer Wins the Game!");
     } else if (playerScore > compScore) {
         return console.log("Player Wins the Game!");
     } else {
         return console.log("It's a Tie! Play again?");
+    };
+};
+
+function changeImages(playerPickImg, compPickImg) {
+    if (playerPickImg === "rock") {
+        playerImg.src = "./img/rock.jpg";
+    } else if (playerPickImg === "paper") {
+        playerImg.src = "./img/paper.jpg";
+    } else if (playerPickImg === "scissors") {
+        playerImg.src = "./img/scissors.jpg";
+    };
+
+    if (compPickImg === "rock") {
+        compImg.src = "./img/rock.jpg";
+    } else if (playerPickImg === "paper") {
+        compImg.src = "./img/paper.jpg";
+    } else if (compPickImg === "scissors") {
+        compImg.src = "./img/scissors.jpg";
     };
 };
