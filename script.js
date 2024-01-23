@@ -1,44 +1,65 @@
+const pickBtns = document.querySelectorAll(".pickBtn");
+const playerWins = document.querySelector(".player-wins");
+const compWins = document.querySelector(".comp-wins");
+const winText = document.querySelector("#win-text");
+const playerImg = document.querySelector("#player-img");
+const compImg = document.querySelector("#comp-img")
+let player;
+let computer;
+let result;
 
-// Gets the computer's choice.
-// Either rock, paper, or scissors
+let playerScore = 0;
+let compScore = 0;
+
 function getComputerChoice() {
-    let compChoice;
-    let num = Math.floor(Math.random() * 3) + 1;
-    if (num == 1) {
-        compChoice = "rock";
-    } else if (num == 2) {
-        compChoice = "paper";
-    } else {
-        compChoice = "scissors";
+    const num = Math.floor(Math.random() * 3) + 1;
+    switch(num) {
+        case 1:
+            return "rock";
+        case 2:
+            return "paper";
+        case 3:
+            return "scissors";
     };
-    return compChoice;
 };
 
-// plays a round of rock paper scissors
-function playRound(computerSelection) {
-    let playerSelection = prompt("Choose your hand. Rock, Paper, or Scissors!").toLowerCase(); // Makes whatever variation player puts to lower case (ex. rocK, ROCK, RocK to 'rock')
+pickBtns.forEach(button => button.addEventListener("click", () => {
+    player = button.textContent;
+    let comp = getComputerChoice();
+    changeImages(player, comp);
+    let tieWinLose = playRound(player, comp);
+    if (tieWinLose === "It's a Tie!") {
+        winText.textContent = "You both are idiots. -_-";
 
-    if (playerSelection === "rock" && computerSelection === "paper") {
+    } else if (tieWinLose === "You Lose!") {
+        winText.textContent = "How you lose to computer. o.o";
+        compScore++;
+        compWins.textContent = compScore;
+
+    } else if (tieWinLose === "You Win!") {
+        winText.textContent = "Wow you guessed right. Loser";
+        playerScore++;
+        playerWins.textContent = playerScore;
+        
+    }
+}));
+
+function playRound(playerSelection, computerSelection) {
+
+    if (playerSelection === computerSelection) {
+        return "It's a Tie!";
+    } else if (playerSelection === "rock" && computerSelection === "paper"
+        || playerSelection === "paper" && computerSelection === "scissors"
+        || playerSelection === "scissors" && computerSelection === "rock") {
         return "You Lose!";
-    } else if (playerSelection === "paper" && computerSelection === "scissors") {
-        return "You Lose!";
-    } else if (playerSelection === "scissors" && computerSelection === "rock") {
-        return "You Lose!";
-    } else if (playerSelection === "rock" && computerSelection === "scissors") {
-        return  "You Win!"
-    } else if (playerSelection === "paper" && computerSelection === "rock") {
-        return  "You Win!"
-    } else if (playerSelection === "scissors" && computerSelection === "paper") {
-        return  "You Win!"
-    } else if (playerSelection === computerSelection) {
-        return "It's a Tie!"
+    } else if (playerSelection === "rock" && computerSelection === "scissors"
+        || playerSelection === "paper" && computerSelection === "rock"
+        || playerSelection === "scissors" && computerSelection === "paper") {
+        return  "You Win!";
     };
 };
 
 function game() {
-    let playerScore = 0;
-    let compScore = 0;
-
     for (let i = 0; i < 5; i++) {
         let computer = getComputerChoice();
         let whoWon = playRound(computer);
@@ -46,15 +67,12 @@ function game() {
         console.log(whoWon);
 
         if (whoWon === "You Lose!") {
-            compScore++;
+            compscore++;
         } else if (whoWon === "You Win!") {
             playerScore++;
         };
         
     };
-
-    console.log("Player Score: " + playerScore);
-    console.log("Computer Score: " + compScore);
 
     if (playerScore < compScore) {
         return console.log("Computer Wins the Game!");
@@ -63,7 +81,22 @@ function game() {
     } else {
         return console.log("It's a Tie! Play again?");
     };
-    
 };
 
-game();
+function changeImages(playerPickImg, compPickImg) {
+    if (playerPickImg === "rock") {
+        playerImg.src = "./img/rock.jpg";
+    } else if (playerPickImg === "paper") {
+        playerImg.src = "./img/paper.jpg";
+    } else if (playerPickImg === "scissors") {
+        playerImg.src = "./img/scissors.jpg";
+    };
+
+    if (compPickImg === "rock") {
+        compImg.src = "./img/rock.jpg";
+    } else if (playerPickImg === "paper") {
+        compImg.src = "./img/paper.jpg";
+    } else if (compPickImg === "scissors") {
+        compImg.src = "./img/scissors.jpg";
+    };
+};
